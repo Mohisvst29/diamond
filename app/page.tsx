@@ -11,6 +11,7 @@ import SuccessPartners from "@/components/success-partners"
 import { getProjects } from "@/actions/project-actions"
 import { getServices } from "@/actions/service-actions"
 import SiteContent from "@/models/SiteContent"
+import connectDB from "@/lib/db"
 
 export default async function HomePage() {
   await connectDB()
