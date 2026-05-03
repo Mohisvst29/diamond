@@ -13,6 +13,9 @@ import { getServices } from "@/actions/service-actions"
 import SiteContent from "@/models/SiteContent"
 
 export default async function HomePage() {
+  await connectDB()
+  const dbServices = await getServices()
+  
   const heroSlides = [
     {
       id: "slide1",
@@ -28,32 +31,7 @@ export default async function HomePage() {
     }
   ]
   const plainProjects = []
-  const plainServices = [
-    {
-      _id: "1",
-      title: "الأعمال المدنية والكهروميكانيكية",
-      description: "CIVIL SERVICES & MEP",
-      details: "تشييد المباني، مراكز البيانات، الهياكل الفولاذية، المعدات، وأنظمة الطاقة (Building construction, Data center, Steel structure, Power systems & UPS).",
-      icon: "Building",
-      href: "/services/civil-mep"
-    },
-    {
-      _id: "2",
-      title: "أنظمة التيار الخفيف",
-      description: "LOW CURRENT SERVICES",
-      details: "أنظمة CCTV، المنازل الذكية، البث التلفزيوني IPTV، السنترالات PABX، أنظمة إنذار الحريق، والتحكم بالدخول.",
-      icon: "Zap",
-      href: "/services/low-current"
-    },
-    {
-      _id: "3",
-      title: "البنية التحتية والاتصالات",
-      description: "Infrastructure Services",
-      details: "تركيب وتشغيل معدات 2G/3G/LTE، BSS، MSC، دعم الشبكات، تخطيط الأنظمة اللاسلكية، خدمات IBS، و LOS.",
-      icon: "Settings",
-      href: "/services/infrastructure"
-    }
-  ]
+  const plainServices = JSON.parse(JSON.stringify(dbServices))
 
   return (
     <main className="min-h-screen">

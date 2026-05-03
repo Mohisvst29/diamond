@@ -39,40 +39,13 @@ export const metadata = {
 }
 
 export default async function ServicesPage() {
-  // await connectDB()
+  await connectDB()
 
-  // const [services, bannerDoc] = await Promise.all([
-  //   getServices(),
-  //   SiteContent.findOne({ key: 'banner_services' })
-  // ])
-  const services: any[] = [
-    {
-      _id: "1",
-      title: "الأعمال المدنية والكهروميكانيكية",
-      description: "حلول متكاملة لإنشاء المباني ومراكز البيانات وتوفير خدمات المقاولات الشاملة (CIVIL SERVICES & MEP).",
-      icon: "Building2",
-      href: "/services/civil-mep",
-      image: "/service-civil.jpg"
-    },
-    {
-      _id: "2",
-      title: "أنظمة التيار الخفيف",
-      description: "متخصصون في توريد وتركيب أنظمة التيار الخفيف والمراقبة والتحكم (LOW CURRENT SERVICES).",
-      icon: "Zap",
-      href: "/services/low-current",
-      image: "/service-low-current.jpg"
-    },
-    {
-      _id: "3",
-      title: "البنية التحتية والاتصالات",
-      description: "تطوير وصيانة شبكات الاتصالات المتقدمة وتأمين البنية التحتية (Infrastructure).",
-      icon: "Network",
-      href: "/services/infrastructure",
-      image: "/service-telecom.jpg"
-    }
-  ]
-  const bannerDoc: any = null
-
+  const [services, bannerDoc] = await Promise.all([
+    getServices(),
+    SiteContent.findOne({ key: 'banner_services' })
+  ])
+  
   const banner = bannerDoc?.value || {}
   const bannerImage = banner.image || '/aaa.png'
   const bannerTitle = banner.title || 'خدماتنا'
